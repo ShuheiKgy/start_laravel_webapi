@@ -24,7 +24,7 @@ class BmiServiceTest extends TestCase
         $method = new \ReflectionMethod(get_class($bmiService), 'calcBmi');
         $method->setAccessible(true);
         $actual = $method->invoke($bmiService, $height, $weight);
-        $this->assertEquals($result, $actual, ' 0.2');
+        $this->assertEquals($result, $actual, '', 0.2);
     }
 
     /**
