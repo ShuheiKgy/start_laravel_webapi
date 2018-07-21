@@ -63,7 +63,12 @@ class PersonTest extends TestCase
 
     public function testPersonView()
     {
-        $response = $this->json('GET', 'api/person/1');
+        $this->personMock
+            ->shouldReceive('resolveRouteBinding')
+            ->once()
+            ->andReturn($this->personMock);
+        $this->app->instance('App\Models\Person', $this->personMock);
+        $response = $this->json('GET','api/person/1');
         $response->assertStatus(200);
     }
 
