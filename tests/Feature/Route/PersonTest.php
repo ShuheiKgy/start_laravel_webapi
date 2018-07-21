@@ -43,11 +43,11 @@ class PersonTest extends TestCase
         Mockery::close();
     }
 
-    public function testPersonList()
-    {
-        $response = $this->json('GET', 'api/person');
-        $response->assertStatus(200);
-    }
+//    public function testPersonList()
+//    {
+//        $response = $this->json('GET', 'api/person');
+//        $response->assertStatus(200);
+//    }
 
     public function testPersonStore()
     {
