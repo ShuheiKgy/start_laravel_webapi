@@ -90,7 +90,16 @@ class PersonTest extends TestCase
 
     public function testPersonDelete()
     {
-        $response = $this->json('DELETE', 'api/person/1');
+        $this->personMock
+            ->shouldReceive('resolveRouteBinding')
+            ->once()
+            ->andReturn($this->personMock);
+        $this->personMock
+            ->shouldReceive('delete')
+            ->once()
+            ->andReturn(1);
+        $this->app->instance('App\Models\Person', $this->personMock);
+        $response = $this->json('DELETE','api/person/1');
         $response->assertStatus(200);
     }
 }
