@@ -51,12 +51,13 @@ class PersonTest extends TestCase
 
     public function testPersonStore()
     {
-        $response = $this->json('POST', 'api/person',
-            [
-                'name' => 'Johnny',
-                'weight' => '60',
-                'height' => '1.72'
-            ]);
+        $this->personMock
+            ->shouldReceive('create')
+            ->once()
+            ->andReturn($this->personMock);
+        $this->app->instance('App\Models\Person', $this->personMock);
+        $response = $this->json('POST','api/person',
+            ['name' => 'Johnny', 'weight' => '60', 'height' => '1.72']);
         $response->assertStatus(200);
     }
 
