@@ -74,7 +74,17 @@ class PersonTest extends TestCase
 
     public function testPersonUpdate()
     {
-        $response = $this->json('PUT', 'api/person/1', ['name' => 'Johnson']);
+        $this->personMock
+            ->shouldReceive('resolveRouteBinding')
+            ->once()
+            ->andReturn($this->personMock);
+        $this->personMock
+            ->shouldReceive('save')
+            ->once()
+            ->andReturn($this->personMock);
+        $this->personMock->shouldIgnoreMissing();
+        $this->app->instance('App\Models\Person', $this->personMock);
+        $response = $this->json('PUT','api/person/1', ['name' => 'Johnson']);
         $response->assertStatus(200);
     }
 
