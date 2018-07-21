@@ -14,11 +14,12 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Person $person
      * @return PersonCollection
      */
     public function index(Person $person)
     {
-        return new PersonCollection($person);
+        return new PersonCollection($person->all());
     }
 
     /**
