@@ -45,7 +45,7 @@ class PersonController extends Controller
             [
                 'name' => $request->input('name'),
                 'height' => $request->input('height'),
-                'weight' => $request->input('weightn'),
+                'weight' => $request->input('weight'),
             ]
         );
         return new PersonResource($p);
